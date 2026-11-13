@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souq</title>
+    <link rel="stylesheet" href="./assets/css/output.css">
+</head>
+<body class="bg-primary">
+    <header class="bg-seventh/95 backdrop-blur-lg py-[10.75px] drop-shadow-sm sticky top-0 left-0 right-0 z-20">
+        <div class="container row justify-between">
+            <a href="./index.html">
+                <img src="./assets/images/Logo.svg" alt="Logo image">
+            </a>
+            <nav class="hidden lg:flex">
+                <ul class="row gap-8">
+                    <li>
+                        <a href="./index.html" class="nav-link bg-eighth text-fifth">Products</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="row gap-4">
+                <div>
+                    <input class="search" type="text" name="search" placeholder="Search products">
+                </div>
+                <button>
+                    <img src="./assets/imgs/nav_imags/Menu.svg" alt="Menu image" class="flex lg:hidden">
+                </button>            
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="pt-12">
+            <div class="container col pt-8.5 gap-4">
+                <div>
+                    <h1 class="text-[34px] leading-12.75 font-semibold text-fifth">Products</h1>
+                </div>
+                <div class="row gap-6.5 items-start">
+                    <aside class="h-fit w-fit rounded-3xl border border-secondary bg-white shadow-third py-5.25 px-5.25">
+                        <h3 class="text-[16px] leading-6 font-semibold text-sixth">Filters</h3>
+                        <form class="pt-[33.2px]">
+                            <div class="col gap-1.5">
+                                <label for="activityCategory" class="text-[13px] leading-4.75 font-semibold text-fourth">Category</label>
+                                <div>
+                                    <select data-optionCategory name="activityCategory" id="activityCategory" class="w-full py-2 ps-6.5 appearance-none text-[13px] leading-4.5 font-semibold text-fifth border border-secondary rounded-xl outline-0 focus:ring-2 focus:ring-third/20 focus:border-sixth transition-all duration-150">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+                    <div class="w-5/6">
+                        <div data-product class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.21.1/axios.min.js" integrity="sha512-YiweniDPqprdTP7mvKVpKWv3jMGTY9frHzOTmDqbutoqcypYCRo8nfKhhDKnSiXTTMN0kBrDtTozIlM11wqcAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

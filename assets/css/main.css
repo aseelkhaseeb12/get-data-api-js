@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme{
+    --color-primary: #FDE4EC; 
+    --color-secondary: #F4DCE5;
+    --color-third: #F8EEF2;
+    --color-fourth: #7D7288;
+    --color-fifth: #4A3F55;
+    --color-sixth: #D6437A;
+    --color-seventh: #FFF6F8;
+    --color-eighth: #FDEAF0;
+    --color-ninth: #757575;
+    --color-white: #FFFFFF;
+    --shadow-first: 0px 4px 14px 0px #D6437A12;
+    /* --shadow-second: 0 12px 26px 5px rgba(105,105,105,.16); */
+    --shadow-second: 0 12px 26px 5px rgba(214, 67, 122,.20);
+    --shadow-third: 0px 4px 14px 0px rgba(214, 67, 122, 0.05);
+    
+    /*--background-image-products-gradient: linear-gradient(180deg,#FFEAF1,#FFF6F8 420px);*/
+}
+
+@layer base{
+    /* body{
+        font-family: var(--font-primary);
+    } */
+    .container{
+        @apply mx-auto px-6;
+    }
+    /* button{
+        cursor: pointer;
+    } */
+}
+
+@utility row{
+    @apply flex items-center
+}
+
+@utility col{
+    @apply flex flex-col
+}
+
+@utility nav-link{
+    @apply text-[15px] leading-6 font-semibold text-fourth rounded-full py-1.5 px-3.5 hover:bg-eighth hover:text-fifth
+}
+
+@utility search{
+    @apply bg-white rounded-full border border-secondary py-2.5 ps-3.75 text-[15px] font-normal text-ninth outline-0 focus:border-sixth
+}
+
+@utility product{
+    @apply col w-full h-full overflow-hidden rounded-3xl border border-secondary bg-white shadow-first hover:border-sixth hover:shadow-second hover:-translate-y-1 transition-all duration-150
+}
+
+@utility product_category_name{
+    @apply text-[12px] leading-4.5 tracking-[0.5px] font-bold text-fourth uppercase
+}
+
+@utility product_name{
+    @apply text-[17px] leading-5.5 font-semibold text-fifth
+}
+
+@utility product_price{
+    @apply text-[22px] leading-8.25 font-semibold text-fifth
+}
+
+@utility product_originalPrice{
+    @apply text-[14px] leading-5.25 font-normal line-through text-fourth
+}
