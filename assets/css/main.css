@@ -11,24 +11,44 @@
     --color-eighth: #FDEAF0;
     --color-ninth: #757575;
     --color-white: #FFFFFF;
+
     --shadow-first: 0px 4px 14px 0px #D6437A12;
-    /* --shadow-second: 0 12px 26px 5px rgba(105,105,105,.16); */
     --shadow-second: 0 12px 26px 5px rgba(214, 67, 122,.20);
     --shadow-third: 0px 4px 14px 0px rgba(214, 67, 122, 0.05);
-    
-    /*--background-image-products-gradient: linear-gradient(180deg,#FFEAF1,#FFF6F8 420px);*/
 }
 
 @layer base{
-    /* body{
-        font-family: var(--font-primary);
-    } */
+    body{
+        @apply bg-primary
+    }
     .container{
         @apply mx-auto px-6;
     }
-    /* button{
+    button{
         cursor: pointer;
-    } */
+    }
+    .loader {
+        width: 50px;
+        aspect-ratio: 1;
+        display:grid;
+        -webkit-mask: conic-gradient(from 15deg,#0000,#000);
+        animation: l26 1s infinite steps(12);
+    }
+    .loader,
+    .loader:before,
+    .loader:after{
+        background:
+            radial-gradient(closest-side at 50% 12.5%,
+            #f03355 96%,#0000) 50% 0/20% 80% repeat-y,
+            radial-gradient(closest-side at 12.5% 50%,
+            #f03355 96%,#0000) 0 50%/80% 20% repeat-x;
+    }
+    .loader:before,
+    .loader:after {
+        content: "";
+        grid-area: 1/1;
+        transform: rotate(30deg);
+    }
 }
 
 @utility row{
@@ -38,7 +58,7 @@
 @utility col{
     @apply flex flex-col
 }
-
+/*Start header section style*/
 @utility nav-link{
     @apply text-[15px] leading-6 font-semibold text-fourth rounded-full py-1.5 px-3.5 hover:bg-eighth hover:text-fifth
 }
@@ -46,9 +66,11 @@
 @utility search{
     @apply bg-white rounded-full border border-secondary py-2.5 ps-3.75 text-[15px] font-normal text-ninth outline-0 focus:border-sixth
 }
-
+/*End header section style*/
+/*Start product page style*/
 @utility product{
-    @apply col w-full h-full overflow-hidden rounded-3xl border border-secondary bg-white shadow-first hover:border-sixth hover:shadow-second hover:-translate-y-1 transition-all duration-150
+    @apply col w-full h-full overflow-hidden justify-between rounded-3xl border border-secondary bg-white shadow-first 
+    cursor-pointer hover:border-sixth hover:shadow-second hover:-translate-y-1 transition-all duration-150
 }
 
 @utility product_category_name{
@@ -65,4 +87,74 @@
 
 @utility product_originalPrice{
     @apply text-[14px] leading-5.25 font-normal line-through text-fourth
+}
+/*End product page style*/
+/*Start product_details page style*/
+@utility product-details{
+    @apply flex gap-10 bg-white p-7.5 rounded-xl
+}
+
+@utility product-images{
+    @apply w-[45%]
+}
+
+@utility main-image{
+    @apply h-100 bg-[#f8f8f8] rounded-[10px] row justify-center
+}
+
+@utility main-image img{
+    @apply w-full h-full object-contain
+}
+
+/* @utility .thumbnail{
+    @apply bg-red-500 flex flex-row gap-2.5 mt-3.75
+}
+
+@utility .thumbImg{
+    @apply w-22.5 h-22.5 object-contain border-2 border-[#526b50] rounded-lg p-1.25
+} */
+
+/*
+@utility product-info{
+    @apply flex-1
+}
+
+@utility category{
+    @apply row bg-[#eaf0e8] py-1.5 px-3 rounded-[20px] text-[13px] text-[#526b50] capitalize
+}
+
+@utility product-info h1{
+    @apply text-[28px] my-3.75
+}
+
+@utility brand{
+    @apply text-[#777]
+}
+
+@utility rating{
+    @apply my-3.75 text-[#d99b22]
+}
+
+@utility price{
+    @apply row gap-3 my-5
+}
+
+@utility price span:first-child{
+    @apply text-[28px] font-bold text-[#526b50]
+}
+
+@utility price del{
+    @apply text-[#999]
+}
+
+@utility discount{
+    @apply bg-[#ffe8e8] text-[#d33] py-1.25 px-2 rounded-[5px] text-[12px]
+}
+
+@utility description{
+    @apply text-[#666] leading-0.5 my-5
+} */
+/*End product_details page style*/
+@utility error{
+    @apply text-red-600 text-[23px] font-bold
 }

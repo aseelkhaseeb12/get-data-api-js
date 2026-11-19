@@ -1,20 +1,49 @@
-const productsElement = document.querySelector('[data-product]');
- 
-async function getProduct(){
-    const response = await axios.get("https://dummyjson.com/products");
-    const products = response.data.products;
-    console.log(products);
+const getCategories = async () => {
+    const response = await axios.get("https://dummyjson.com/products/categories");
+    return response;
+}
+
+const displayCategories = async () => {
+    const loader = document.querySelector('.categories-loader');
     
-    const result = products.map( (product) => {
+    try{
+        const {data} = await getCategories();
+        const categoriesResult = data.map( (category) => {
+            return `
+                <li class="cursor-pointer bg-secondary rounded-2xl p-2.5 mb-3 text-[13px] leading-4.5 font-semibold text-fifth hover:bg-sixth hover:text-white">
+                    <button type="button">${category.name}</button>
+                <li/>
+            `
+        }).join('');
+
+        document.querySelector('[data-optionCategory]').innerHTML = categoriesResult;
+    }catch(error){
+        document.querySelector('[data-optionCategory]').innerHTML = `<li class="error">Failed to load categories<li/>`;
+    }finally{
+        loader.classList.add('hidden');
+    }
+}
+displayCategories();
+
+const getProducts = async() => {
+    const response = await axios.get("https://dummyjson.com/products");
+    return response;
+}
+
+const displayProducts = async () => {
+    const loader = document.querySelector('.products-loader');
+    try{
+        const {data} = await getProducts();
+        
+        const result = data.products.map( (product) => {
         const discount = Math.trunc(product.discountPercentage);
         const originalPrice = product.price/(1-(discount/100));
         const cleanOriginalPrice = Number(originalPrice.toFixed(2));
 
         return `
-            <a href="../../product_details.html">
-                <div class="product">
+                <div class="product" data-product-id="${product.id}">
                     <div class="relative bg-third rounded-t-3xl">
-                        <img src=${product.images[0]} alt=">${product.title}"> 
+                        <img src=${product.thumbnail} alt=">${product.title}"> 
                         <span class="absolute top-2.5 left-2.5 rounded-full py-0.75 px-2.25 bg-sixth text-[12px] leading-4.5 font-bold text-white">-${discount}%</span>
                     </div>
                     <div class="p-4">
@@ -25,33 +54,20 @@ async function getProduct(){
                             <span class="product_originalPrice">$${cleanOriginalPrice}</span>
                         </div>
                     </div>
+                    
+                    <a class="m-4 text-center text-white bg-sixth rounded-lg" href="../../product_details.html?id=${product.id}" data-action="view-details">
+                        View Details
+                    </a>
                 </div>
-            </a>
-        `
-    }).join('');
+            `
+        }).join('');
 
-    productsElement.innerHTML = result;
+        document.querySelector('[data-product]').innerHTML = result;
+    }catch(error){
+        document.querySelector('[data-product]').innerHTML = `<div class="error">Failed to load categories</div>`;
+    }finally{
+        loader.classList.add('hidden');
+    }
 }
 
-getProduct();
-
-const categoriesElement = document.querySelector('[data-optionCategory]');
-
-async function getCategory(){
-    const response = await axios.get("https://dummyjson.com/products/categories");
-    const categories = response.data;
-    console.log(response.data);
-    
-    const categoriesResult = categories.map( (category) => {
-        return `
-            <div>
-                // <h2>Category name : ${category.slug}</h2>
-                <option value="${category.slug}">${category.slug}</option>
-            <div/>
-         `
-    }).join('');
-
-    categoriesElement.innerHTML = categoriesResult;
-}
-
-getCategory();
+displayProducts();
