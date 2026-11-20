@@ -4,58 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Souq</title>
-    <link rel="stylesheet" href="./assets/css/product.css">
-    <!-- <link rel="stylesheet" href="./assets/css/output.css"> -->
+    <link rel="stylesheet" href="./assets/css/output.css">
 </head>
-<body> 
-    <main>
-        <div class="container pt-12">
-            <a href="./product.html" class="back-link">← Back to Products</a>
-
-            <section class="product-details">
-
-                <!-- Product Images -->
-                <div class="loader product-image-loader"></div>
-                <div class="product-images">
-
+<body>
+    <header class="bg-seventh/95 backdrop-blur-lg py-[10.75px] drop-shadow-sm sticky top-0 left-0 right-0 z-20">
+        <div class="container row justify-between">
+            <a href="./index.html">
+                <img src="./assets/images/Logo.svg" alt="Logo image">
+            </a>
+            <nav class="hidden lg:flex">
+                <ul class="row gap-8">
+                    <li>
+                        <a href="./index.html" class="nav-link">Home</a>
+                    </li>
+                    <li>
+                        <a href="./product.html" class="nav-link bg-eighth text-fifth">Products</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="row gap-4">
+                <div>
+                    <input class="search" type="text" name="search" placeholder="Search products">
                 </div>
-
-                <!-- Product Information -->
-                <div class="loader product-info-loader"></div>
-                <div class="product-info">
-                </div>
-
-            </section>
-
-            <!-- Additional Information -->
-            <section class="additional-info">
-
-                <h2>Product Specifications</h2>
-
-                <div class="loader product-specifications-loader"></div>
-                <div class="specifications">
-                </div>
-
-                <h2>Tags</h2>
-
-                <div class="tags">
-
-                </div>
-
-            </section>
-
-            <!-- Reviews -->
-            <div class="loader review-loader"></div>
-            <section class="reviews">
-
-                <h2>Customer Reviews</h2>
-
-                
-            </section>
-
+                <button>
+                    <img src="./assets/images/Menu.svg" alt="Menu image" class="flex lg:hidden">
+                </button>            
+            </div>
         </div>
-    </main>
+    </header>
+    <main>
 
+        <!-- Product Details -->
+        <section class="pt-13.75">
+            <div class="container">
+                <div class="grid grid-cols-2 gap-10 pt-2.5">
+                    <!-- <div class="loader product-image-loader"></div> -->
+                    <!-- Product Images -->
+                    <div data-product-images class="flex flex-col gap-3.5">
+                        
+                    </div>
+                    <!-- Product Information -->
+                    <div class="flex flex-col gap-3.5">
+                        <div data-product-info class="flex flex-col gap-3.5">
+                            <div class="loader products-loader"></div>
+                        </div>
+                        <div class="flex flex-row gap-3.5 py-2.5">
+                            <button class="rounded-full py-3.5 px-7 bg-sixth shadow-fifth text-[13.3px] font-bold text-white text-center">
+                                Add to Cart
+                            </button>
+                            <button class="rounded-full py-3.25 px-5 border border-secondary bg-white text-[13.3px] font-bold text-fifth text-center">
+                                ♡ Wishlist
+                            </button>
+                        </div>
+                        <!-- specifications -->
+                        <div data-specifications class="grid grid-cols-2 gap-2.5">
+                            <!-- Availability -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Availability</span>
+                                <span class="text-[13px] leading-4.75 font-bold text-eleventh">
+                                    In Stock 
+                                    <span data-inStock class="font-normal text-fifth"></span>
+                                </span>
+                            </div>
+                            <!-- Minimum Order Quantity -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Min. order</span>
+                                <span minimum-order class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- Shipping -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Shipping</span>
+                                <span data-ships class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- Return Policy -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Returns</span>
+                                <span data-return-policy class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- Warranty -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Warranty</span>
+                                <span data-warranty class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- Weight -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Weight</span>
+                                <span data-weight class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- Width Hight Depsth -->
+                            <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">Size (W × H × D)</span>
+                                <span data-whd class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                            <!-- SKU -->
+                             <div class="flex flex-col rounded-[14px] py-2.5 px-3.5 border border-secondary bg-white">
+                                <span class="text-[12px] leading-4.5 font-semibold text-fourth">SKU</span>
+                                <span data-sku class="text-[13px] leading-4.75 font-normal text-fifth"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Customer Reviews -->
+        <section class="py-12">
+            <div class="container flex flex-col gap-3">
+                <h2 class="text-[24px] leading-9 font-semibold text-fifth">Customer Reviews</h2>
+                <div data-review class="flex flex-col gap-3">
+                    
+                </div>
+            </div>
+        </section>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.21.1/axios.min.js" integrity="sha512-YiweniDPqprdTP7mvKVpKWv3jMGTY9frHzOTmDqbutoqcypYCRo8nfKhhDKnSiXTTMN0kBrDtTozIlM11wqcAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/productDetails.js"></script>
 </body>

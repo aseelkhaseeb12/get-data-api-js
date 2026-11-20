@@ -7,10 +7,7 @@ const getProductDetails = async (id) => {
 }
 
 const displayProductDetails = async (id) => {
-    const image_loader = document.querySelector('.product-image-loader');
-    const info_loader = document.querySelector('.product-info-loader');
-    const specifications_loader = document.querySelector('.product-specifications-loader');
-    const review_loader = document.querySelector('.review-loader');
+    const products_loader = document.querySelector('.products-loader');
    
     try{
         const productDetails = await getProductDetails(id);
@@ -20,105 +17,92 @@ const displayProductDetails = async (id) => {
         const cleanOriginalPrice = Number(originalPrice.toFixed(2));
         
         //Product Main Images
-        document.querySelector(".product-images").innerHTML = `
-            <div class="main-image">
-                <img
-                    src="${productDetails.thumbnail}"
-                    alt="${productDetails.title}"
-                >
+        document.querySelector("[data-product-images]").innerHTML = `
+            <!-- Main image -->
+            <div class="h-118.5 rounded-3xl p-6 border border-secondary bg-white shadow-fourth">
+                <img class="h-full w-full object-contain rounded-[14px]" src="${productDetails.thumbnail}" alt="${productDetails.title}">
             </div>
-            <div class="thumbnail">
+            <!-- Thumbnail images -->
+            <div data-thumbnail class="flex flex-row gap-2.5">
                 
             </div>
         `
         //Product Thumbnail Images
-        document.querySelector(".thumbnail").innerHTML = productDetails.images.map( (img) => {
-                    return `<img class="thumbImg"
-                        src="${img}"
-                        alt="Product thumbnail"
-                    >`
+        document.querySelector("[data-thumbnail]").innerHTML = productDetails.images.map( (img) => {
+                    return `
+                    <div class="w-25 rounded-[14px] p-1 bg-white border-2 border-secondary">
+                        <img class="rounded-lg" src="${img}" alt="Product thumbnail">
+                    </div>`
                 }).join('');
-
+        
         //Product Information
-        document.querySelector(".product-info").innerHTML = `
-            <span class="category">${productDetails.category}</span>
-        
-            <h1>${productDetails.title}</h1>
+         document.querySelector("[data-product-info]").innerHTML = `
+            <!-- Category -->
+            <span class="text-[14px] leading-5.25 tracking-[0.5px] font-bold uppercase text-sixth">${productDetails.category} . ${productDetails.brand}</span>
+            <!-- Product Name -->
+            <h1 class="text-[32px] leading-9.5 font-semibold text-fifth">${productDetails.title}</h1>
+            <!-- Rate -->
+            <div class="flex flex-row gap-1.5 text-[14px] leading-5.25 font-normal text-fourth">
+                <span class="text-tenth">★</span>
+                ${productDetails.rating} · 
+                <span class="text-[14px] leading-5.25 font-normal text-fourth">${productDetails.reviews.length} verified customer reviews</span>
+            </div>   
+            <!-- Price -->
+            <div>
+                <span class="text-[28px] leading-10.5 font-semibold text-sixth">$${productDetails.price}</span>
+                <span class="text-[16px] leading-6 font-normal text-fourth line-through">$${cleanOriginalPrice}</span>
+                <span class="rounded-full py-0.75 px-2.5 bg-eighth text-[12px] leading-4.5 font-bold text-sixth">-${discount}% OFF</span>
+            </div>
+            <!-- Description -->
+            <p class="text-[15px] leading-6 font-normal text-fifth">${productDetails.description}</p>
+            <!-- Tags -->
+            <div data-tags class="flex flex-row gap-2">
 
-                    <p class="brand">Brand: <strong>${productDetails.brand? productDetails.brand: "not exist"}</strong></p>
-
-                    <div class="rating">
-                        ${productDetails.rating} / 5
-                    </div>
-
-                    <div class="price">
-                        <span>$${productDetails.price}</span>
-                        <del>$${cleanOriginalPrice}</del>
-                        <span class="discount">${productDetails.discountPercentage}% OFF</span>
-                    </div>
-
-                    <p class="description">
-                        ${productDetails.description}
-                    </p>
-
-                    <div class="availability">
-                        <span class="status">In Stock</span>
-                        <span>${productDetails.stock} items available</span>
-                    </div>
-
-                    <p class="sku">SKU: ${productDetails.sku}</p>
-
-                    <p class="minimum-order">
-                        Minimum Order Quantity: ${productDetails.minimumOrderQuantity}
-                    </p>
-
-                    <button class="add-to-cart" type="button">
-                        Add to Cart
-                    </button>`
-        
-        //Product Specifications
-        document.querySelector(".specifications").innerHTML = `
-                <div><strong>Weight:</strong> ${productDetails.weight} g</div>
-                <div><strong>Width:</strong> ${productDetails.dimensions.width} cm</div>
-                <div><strong>Height:</strong> ${productDetails.dimensions.height} cm</div>
-                <div><strong>Depth:</strong> ${productDetails.dimensions.depth} cm</div>
-                <div><strong>Warranty:</strong> ${productDetails.warrantyInformation}</div>
-                <div><strong>Shipping:</strong> ${productDetails.shippingInformation}</div>
-                <div><strong>Return Policy:</strong> ${productDetails.returnPolicy}</div>
-                <div><strong>Barcode:</strong> ${productDetails.meta.barcode}</div>
-        `
-        
-        //Prpduct Tags
-        document.querySelector(".tags").innerHTML = productDetails.tags.map( (tag) => {
-            return `<span>${tag}</span>`
-        }).join('');
+            </div>
+            `
+            //Tags
+            document.querySelector("[data-tags]").innerHTML = productDetails.tags.map((tag) => {
+                return `
+                <span class="rounded-full px-2.5 py-0.75 bg-seventh text-[12px] leading-4.5 font-bold text-sixth">
+                    ${tag}
+                </span>`
+            }).join('');
+            
+            //specifications
+            //Availability
+            document.querySelector("[data-inStock]").innerHTML = `(${productDetails.stock} available)`;
+            //Minimum Order Quantity
+            document.querySelector("[minimum-order]").innerHTML = `${productDetails.minimumOrderQuantity} item`;
+            //Shipping
+            document.querySelector("[data-ships]").innerHTML = `${productDetails.shippingInformation}`;
+            //Return Policy
+            document.querySelector("[data-return-policy]").innerHTML = `${productDetails.returnPolicy}`;
+            //Warranty
+            document.querySelector("[data-warranty]").innerHTML = `${productDetails.warrantyInformation}`;
+            //Weight 
+            document.querySelector("[data-weight]").innerHTML = `${productDetails.weight} g`;
+            //Width Hight Depsth 
+            document.querySelector("[data-whd]").innerHTML = `${productDetails.dimensions.width} x ${productDetails.dimensions.height} x ${productDetails.dimensions.depth} cm`;
+            //SKU
+            document.querySelector("[data-sku]").innerHTML = `${productDetails.sku}`;
 
         //Product Reviews
-        document.querySelector(".reviews").innerHTML = productDetails.reviews.map( (review) => {
+        document.querySelector("[data-review]").innerHTML = productDetails.reviews.map( (review) => {
             const stars = "★".repeat(review.rating);
             return `
-                <div class="review">
-                    <div class="review-header">
-                        <strong>${review.reviewerName}</strong>
-                        <span>
-                        ${stars}
-                        ${review.rating}/5
-                        </span>
-                    </div>
-                    <p>${review.comment}</p>
+            <article class="flex flex-col rounded-2xl p-4 gap-1.5 border border-secondary bg-white">
+                <div>
+                    <span class="text-[15px] leading-5.5 font-bold text-fifth">${review.reviewerName}</span>
+                    <span class="text-fourth"><span class="text-tenth">${stars}</span> ${review.rating}/5</span>
                 </div>
+                <p class="text-[15px] leading-5.5 font-normal text-fifth">${review.comment}</p>
+            </article>
             `
         }).join('');
     }catch(error){
-        document.querySelector(".product-images").innerHTML = `<div class="error">Failed to load categories</div>`;
-        document.querySelector(".product-info").innerHTML = `<div class="error">Failed to load categories</div>`;
-        document.querySelector(".specifications").innerHTML = `<div class="error">Failed to load categories</div>`;
-        document.querySelector(".reviews").innerHTML = `<div class="error">Failed to load categories</div>`;
+        document.querySelector("[data-product-info]").innerHTML = `<div class="error">Failed to load product</div>`;
     }finally{
-        image_loader.classList.add('hidden');
-        info_loader.classList.add('hidden');
-        specifications_loader.classList.add('hidden');
-        review_loader.classList.add('hidden');
+        products_loader.classList.add('hidden');
     }
 }
 

@@ -10,11 +10,15 @@
     --color-seventh: #FFF6F8;
     --color-eighth: #FDEAF0;
     --color-ninth: #757575;
+    --color-tenth: #B7791F;
+    --color-eleventh: #2E8F6B;
     --color-white: #FFFFFF;
 
     --shadow-first: 0px 4px 14px 0px #D6437A12;
     --shadow-second: 0 12px 26px 5px rgba(214, 67, 122,.20);
     --shadow-third: 0px 4px 14px 0px rgba(214, 67, 122, 0.05);
+    --shadow-fourth: 0px 6px 18px 0px #D6437A14;
+    --shadow-fifth: 0px 6px 16px 0px #D6437A47;
 }
 
 @layer base{
@@ -97,7 +101,7 @@
 @utility product-images{
     @apply w-[45%]
 }
-
+/*
 @utility main-image{
     @apply h-100 bg-[#f8f8f8] rounded-[10px] row justify-center
 }
@@ -106,7 +110,7 @@
     @apply w-full h-full object-contain
 }
 
-/* @utility .thumbnail{
+@utility .thumbnail{
     @apply bg-red-500 flex flex-row gap-2.5 mt-3.75
 }
 
