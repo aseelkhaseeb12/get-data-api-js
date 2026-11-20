@@ -55,7 +55,7 @@ const displayProducts = async () => {
                         </div>
                     </div>
                     
-                    <a class="m-4 text-center text-white bg-sixth rounded-lg" href="../../product_details.html?id=${product.id}" data-action="view-details">
+                    <a class="m-4 text-center text-white bg-sixth rounded-lg" href="./../../product_details.html?id=${product.id}" data-action="view-details">
                         View Details
                     </a>
                 </div>
